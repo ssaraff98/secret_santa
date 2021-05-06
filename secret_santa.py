@@ -13,7 +13,7 @@ def create_pairs(emails_file):
     # Checking if email file exists in path
     if not os.path.exists(emails_file):
         print('Email file must be in the same directory as the python script!')
-        return
+        raise
 
     # Opening email file
     with open(emails_file, 'r') as fp:
@@ -27,6 +27,9 @@ def create_pairs(emails_file):
 
 
     num_players = len(email_dict)
+    if num_players <= 1:
+        print('Add friends to the mail file. You can\'t play this game by yourself. That\'s sad.')
+        raise
 
     # Assigning secret santa pairs
     while len(assignments) < num_players:
